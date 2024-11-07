@@ -12,6 +12,7 @@ import {
     Max,
     IsUUID,
     Matches,
+    IsInt,
 } from 'class-validator';
 
 import { EntityName } from '../constants/enums/entity-name.enum';
@@ -20,10 +21,10 @@ import { IsTrimmedStringWithoutTab } from '../constants/validators/trimmed-strin
 
 @Entity(EntityName.STUDENTS)
 export class StudentEntity {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     @IsOptional()
-    @IsUUID()
-    id!: string;
+    @IsInt()
+    id!: number; 
 
     @Column({
         nullable: true,
