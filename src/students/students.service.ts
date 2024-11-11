@@ -14,7 +14,7 @@ export class StudentsService {
   constructor(
     @InjectRepository(StudentEntity)
     private studentsRepo: Repository<StudentEntity>,
-  ) { }
+  ) {}
 
   /**
    * Return rating of students matching all the given criteria
@@ -22,9 +22,7 @@ export class StudentsService {
    *
    * @return {object}  number of students matching find conditions
    */
-  async getRatingOfStudentsBySubject({
-    subject,
-  }: GetRatingOfStudentQueries) {
+  async getRatingOfStudentsBySubject({ subject }: GetRatingOfStudentQueries) {
     const students = await this.studentsRepo
       .createQueryBuilder(EntityName.STUDENTS)
       .select([
@@ -62,8 +60,14 @@ export class StudentsService {
       .createQueryBuilder(EntityName.STUDENTS)
       .select(`${EntityName.STUDENTS}.id`, 'id')
       .addSelect(`${EntityName.STUDENTS}.${SubjectEnum.MATH}`, SubjectEnum.MATH)
-      .addSelect(`${EntityName.STUDENTS}.${SubjectEnum.PHYSICS}`, SubjectEnum.PHYSICS)
-      .addSelect(`${EntityName.STUDENTS}.${SubjectEnum.CHEMISTRY}`, SubjectEnum.CHEMISTRY)
+      .addSelect(
+        `${EntityName.STUDENTS}.${SubjectEnum.PHYSICS}`,
+        SubjectEnum.PHYSICS,
+      )
+      .addSelect(
+        `${EntityName.STUDENTS}.${SubjectEnum.CHEMISTRY}`,
+        SubjectEnum.CHEMISTRY,
+      )
       .addSelect(
         `${EntityName.STUDENTS}.${SubjectEnum.MATH} + ${EntityName.STUDENTS}.${SubjectEnum.PHYSICS} + ${EntityName.STUDENTS}.${SubjectEnum.CHEMISTRY}`,
         `total_core`,
@@ -91,18 +95,16 @@ export class StudentsService {
   }
 
   /**
- * Return grade of students matching all the given criteria
- * @param {object} subject     - the subject to filter
- *
- * @return {object}  number of students matching find conditions
- */
-  async getGradeOfStudentsBySubject({
-    subject,
-  }: GetGradeOfStudentQueries) {
+   * Return grade of students matching all the given criteria
+   * @param {object} subject     - the subject to filter
+   *
+   * @return {object}  number of students matching find conditions
+   */
+  async getGradeOfStudentsBySubject({ subject }: GetGradeOfStudentQueries) {
     const students = await this.studentsRepo
       .createQueryBuilder(EntityName.STUDENTS)
-      .select(`CAST(${EntityName.STUDENTS}.${subject} AS FLOAT)`, "grade")
-      .orderBy(`CAST(${EntityName.STUDENTS}.${subject} AS FLOAT)`, "ASC")
+      .select(`CAST(${EntityName.STUDENTS}.${subject} AS FLOAT)`, 'grade')
+      .orderBy(`CAST(${EntityName.STUDENTS}.${subject} AS FLOAT)`, 'ASC')
       .getRawMany();
 
     const gradeCounts: Record<string, number> = {};

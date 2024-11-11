@@ -5,7 +5,10 @@ import validationPipe from '../validation-pipe';
 
 import { GetRatingOfStudentQueries } from './dto/get-rating-of-students.dto';
 import { StudentsService } from './students.service';
-import { getGradeOfStudentsQueries, getRatingOfStudentsQueries } from './students.request-schema';
+import {
+  getGradeOfStudentsQueries,
+  getRatingOfStudentsQueries,
+} from './students.request-schema';
 import { GetStudentByIdParams } from './dto/get-student-by-id';
 import { GetGradeOfStudentQueries } from './dto/get-grade-of-students.dto';
 

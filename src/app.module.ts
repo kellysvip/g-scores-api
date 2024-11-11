@@ -24,4 +24,4 @@ import { StudentEntity } from './students/student.entity';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

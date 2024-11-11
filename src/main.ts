@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import { NestFactory } from '@nestjs/core';
 import { RequestMethod } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
@@ -13,7 +12,6 @@ dotenv.config();
 process.on('uncaughtException', (err) => {
   process.exit(1);
 });
-
 
 process.on('unhandledRejection', (err: any) => {
   process.exit(1);
