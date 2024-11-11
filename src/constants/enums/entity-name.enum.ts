@@ -1,3 +1,3 @@
 export enum EntityName {
-    STUDENTS = 'students',
+  STUDENTS = 'students',
 }
