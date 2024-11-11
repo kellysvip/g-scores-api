@@ -1,5 +1,17 @@
 version: '3.7'
 services:
+  student-service:
+    build:
+      context: ./
+      dockerfile: ./student.service.dockerfile
+    restart: always
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      DSN: "host=localhost port=5432 user=postgres password=123456?A dbname=gscore_db sslmode=disable timezone=UTC connect_timeout=10"
+
+
   postgres:
     image: postgres:13
     container_name: postgres_db
@@ -7,8 +19,8 @@ services:
       - '5432:5432'
     environment:
       POSTGRES_DB: gscore_db
-      POSTGRES_USER: gscore_user
-      POSTGRES_PASSWORD: gscore_password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456?A
     volumes:
       - postgres_data:/var/lib/postgresql/data
 volumes:
